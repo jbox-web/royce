@@ -6,8 +6,8 @@ Gem::Specification.new do |s|
   s.name        = 'royce'
   s.version     = Royce::VERSION
   s.platform    = Gem::Platform::RUBY
-  s.authors     = ['Martin Nash']
-  s.email       = ['martin.j.nash@gmail.com']
+  s.authors     = ['Martin Nash', 'Nicolas Rodriguez']
+  s.email       = ['martin.j.nash@gmail.com', 'nicoladmin@free.fr']
   s.homepage    = 'https://github.com/MartinJNash/Royce'
   s.summary     = 'A Rails roles sollution.'
   s.description = 'Roles.'
