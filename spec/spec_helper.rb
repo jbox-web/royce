@@ -1,8 +1,10 @@
 require 'simplecov'
 require 'rspec'
 
-# Start Simplecov
-SimpleCov.start
+# Start SimpleCov
+SimpleCov.start do
+  add_filter 'spec/'
+end
 
 # Configure RSpec
 RSpec.configure do |config|
