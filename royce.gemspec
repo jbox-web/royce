@@ -13,6 +13,8 @@ Gem::Specification.new do |s|
   s.description = 'Roles.'
   s.license     = 'MIT'
 
+  s.required_ruby_version = '>= 2.4.0'
+
   s.files = `git ls-files`.split("\n")
 
   s.add_runtime_dependency 'rails', '>= 5.0'
