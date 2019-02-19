@@ -8,8 +8,8 @@ Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.authors     = ['Martin Nash', 'Nicolas Rodriguez']
   s.email       = ['martin.j.nash@gmail.com', 'nicoladmin@free.fr']
-  s.homepage    = 'https://github.com/MartinJNash/Royce'
-  s.summary     = 'A Rails roles sollution.'
+  s.homepage    = 'https://github.com/jbox-web/royce'
+  s.summary     = 'A Rails roles solution.'
   s.description = 'Roles.'
   s.license     = 'MIT'
 
