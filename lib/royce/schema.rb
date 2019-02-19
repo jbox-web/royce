@@ -3,18 +3,13 @@
 module Royce
   module Schema
 
-    extend ActiveSupport::Concern
+    def load_schema!
+      super
 
-    module ClassMethods
-
-      def load_schema!
-        super
-
-        (available_role_names || []).each do |name|
-          Role.find_or_create_by(name: name)
-        end
+      (available_role_names || []).each do |name|
+        Role.find_or_create_by(name: name)
       end
-
     end
+
   end
 end
