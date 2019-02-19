@@ -1,14 +1,18 @@
 AllCops:
-  TargetRubyVersion: 2.5
+  TargetRubyVersion: 2.4
   Exclude:
+    - bin/*
     - lib/generators/**/*.rb
     - gemfiles/*
-    - spec/**/*.rb
+    - spec/**/*
 
 Documentation:
   Enabled: false
 
 Layout/EmptyLinesAroundModuleBody:
+  Enabled: false
+
+Layout/EmptyLinesAroundClassBody:
   Enabled: false
 
 Metrics/LineLength:

@@ -3,6 +3,7 @@
 module Royce
   module ClassMethods
 
+    # rubocop:disable Metrics/AbcSize
     def self.included(includer)
       includer_name = includer.model_name.to_s
       includer_pluralized_name = includer_name.underscore.pluralize.to_sym
@@ -31,6 +32,7 @@ module Royce
         has_many includer_pluralized_name, through: :connectors, source: :roleable, source_type: includer_name
       end
     end
+    # rubocop:enable Metrics/AbcSize
 
   end
 end

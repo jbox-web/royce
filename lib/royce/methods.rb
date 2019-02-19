@@ -29,12 +29,14 @@ module Royce
     def add_role(name)
       return unless allowed_role?(name)
       return if has_role?(name)
+
       role = Role.find_by(name: name.to_s)
       roles << role
     end
 
     def remove_role(name)
       return unless allowed_role?(name)
+
       role = Role.find_by(name: name.to_s)
       roles.delete(role)
     end
