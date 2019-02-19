@@ -10,23 +10,24 @@ Roles in Rails.
 
 ## Installation
 
-Add this to your Gemfile.
+Put this in your `Gemfile` :
 
 ```ruby
-gem 'royce'
+git_source(:github){ |repo_name| "https://github.com/#{repo_name}.git" }
+
+gem 'royce', github: 'jbox-web/royce', tag: '1.1.0'
 ```
 
-Be sure to run `bundle install`.
+then run `bundle install`.
 
-Run this in your terminal.
+Run this in your terminal to generate DB migration :
 
 ```sh
-rails g royce:install
+bin/rails g royce:install
+bin/rails db:migrate
 ```
 
-And run `rake db:migrate`.
-
-Add this to a model.
+Add this to a model :
 
 ```ruby
 royce_roles %w[owner editor administrator]
