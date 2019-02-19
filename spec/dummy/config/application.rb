@@ -9,9 +9,6 @@ require 'rails/all'
 # Require the gems listed in Gemfile
 Bundler.require(*Rails.groups)
 
-# Load tested lib
-require 'royce'
-
 module Dummy
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
