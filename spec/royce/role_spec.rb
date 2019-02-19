@@ -8,6 +8,8 @@ describe 'Basic tests' do
   it 'can create role' do
     role = Royce::Role.create(name: 'some_role')
     expect(role).to_not be nil
+    expect(role.name).to eq 'some_role'
+    expect(role.to_s).to eq 'some_role'
   end
 
   it 'Can create user' do
