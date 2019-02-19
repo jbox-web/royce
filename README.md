@@ -1,4 +1,4 @@
-## Royce
+# Royce
 
 [![GitHub license](https://img.shields.io/github/license/jbox-web/royce.svg)](https://github.com/jbox-web/royce/blob/master/LICENSE)
 [![GitHub release](https://img.shields.io/github/release/jbox-web/royce.svg)](https://github.com/jbox-web/royce/releases/latest)
