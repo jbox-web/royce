@@ -19,9 +19,9 @@ RSpec.configure do |config|
   end
 end
 
-# Load lib
-require 'royce'
+# Load Rails dummy app
+ENV['RAILS_ENV'] = 'test'
+require File.expand_path('dummy/config/environment.rb', __dir__)
 
-ActiveRecord::Base.establish_connection(adapter: 'sqlite3', database: ':memory:')
-load File.dirname(__FILE__) + '/support/schema.rb'
-require File.dirname(__FILE__) + '/support/test_models.rb'
+# Set DB schema
+ActiveRecord::Migration.maintain_test_schema!
