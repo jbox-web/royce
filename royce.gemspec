@@ -4,7 +4,7 @@ require_relative 'lib/royce/version'
 
 Gem::Specification.new do |s|
   s.name        = 'royce'
-  s.version     = Royce::VERSION
+  s.version     = Royce::VERSION::STRING
   s.platform    = Gem::Platform::RUBY
   s.authors     = ['Martin Nash', 'Nicolas Rodriguez']
   s.email       = ['martin.j.nash@gmail.com', 'nicoladmin@free.fr']
