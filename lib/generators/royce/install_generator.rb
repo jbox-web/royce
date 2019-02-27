@@ -10,7 +10,7 @@ module Royce
 
     desc 'Generates DB migration files for Royce'
     def create_migration_file
-      migration_template 'create_royce.rb', 'db/migrate/create_royce.rb'
+      migration_template 'create_royce.erb', 'db/migrate/create_royce.rb'
     end
 
     def self.next_migration_number(dirname)
