@@ -2,6 +2,8 @@
 
 require 'zeitwerk'
 loader = Zeitwerk::Loader.for_gem
+generators = "#{__dir__}/generators"
+loader.ignore(generators)
 loader.setup
 
 module Royce
