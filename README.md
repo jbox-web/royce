@@ -2,7 +2,7 @@
 
 [![GitHub license](https://img.shields.io/github/license/jbox-web/royce.svg)](https://github.com/jbox-web/royce/blob/master/LICENSE)
 [![GitHub release](https://img.shields.io/github/release/jbox-web/royce.svg)](https://github.com/jbox-web/royce/releases/latest)
-[![Build Status](https://travis-ci.org/jbox-web/royce.svg?branch=master)](https://travis-ci.org/jbox-web/royce)
+[![Build Status](https://travis-ci.com/jbox-web/royce.svg?branch=master)](https://travis-ci.com/jbox-web/royce)
 [![Code Climate](https://codeclimate.com/github/jbox-web/royce/badges/gpa.svg)](https://codeclimate.com/github/jbox-web/royce)
 [![Test Coverage](https://codeclimate.com/github/jbox-web/royce/badges/coverage.svg)](https://codeclimate.com/github/jbox-web/royce/coverage)
 
