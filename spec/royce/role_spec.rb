@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Basic tests' do
+RSpec.describe 'Basic tests' do
 
   before { User.delete_all }
   let(:user) { User.create }

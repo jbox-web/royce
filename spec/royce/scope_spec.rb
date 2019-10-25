@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Testing class-level scopes' do
+RSpec.describe 'Testing class-level scopes' do
 
   before do
     Employee.delete_all
