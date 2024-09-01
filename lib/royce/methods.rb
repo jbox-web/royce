@@ -13,11 +13,11 @@ module Royce
         # Loop through all available role names
         # and add a name? method that queries the has_role? method
         available_role_names.each do |name|
-          define_method("#{name}?") do
+          define_method(:"#{name}?") do
             has_role? name
           end
 
-          define_method("#{name}!") do
+          define_method(:"#{name}!") do
             add_role name
           end
         end
@@ -41,7 +41,7 @@ module Royce
       roles.delete(role)
     end
 
-    def has_role?(name)
+    def has_role?(name) # rubocop:disable Naming/PredicateName
       roles.where(name: name.to_s).exists?
     end
 
