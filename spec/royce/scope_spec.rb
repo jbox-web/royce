@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
-RSpec.describe 'Testing class-level scopes' do
+RSpec.describe 'Testing class-level scopes' do # rubocop:disable RSpec/DescribeClass
 
   before do
     Employee.delete_all
@@ -31,10 +33,10 @@ RSpec.describe 'Testing class-level scopes' do
 
   describe 'Role to owning class relationships' do
     the_role = Royce::Role.find_or_create_by(name: 'partier')
-    count  = 20
+    count = 20
 
     it 'exist for single word models' do
-      count.times{ Employee.create.add_role 'partier' }
+      count.times { Employee.create.add_role 'partier' }
       expect(the_role.employees.count).to eq count
     end
 

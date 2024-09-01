@@ -12,7 +12,7 @@ AllCops:
     - bin/*
     - lib/generators/**/*.rb
     - gemfiles/*
-    - spec/**/*
+    - spec/dummy/**/*
 
 Gemspec/RequireMFA:
   Enabled: false
@@ -26,6 +26,9 @@ Style/Documentation:
 
 Style/HashSyntax:
   EnforcedShorthandSyntax: never
+
+Style/BlockDelimiters:
+  AllowedPatterns: ['expect']
 
 ##########
 # LAYOUT #
@@ -50,3 +53,16 @@ Layout/EmptyLinesAroundBlockBody:
 
 Layout/EmptyLinesAroundModuleBody:
   Enabled: false
+
+#########
+# RSPEC #
+#########
+
+RSpec/MultipleExpectations:
+  Max: 6
+
+RSpec/ExampleLength:
+  Max: 8
+
+RSpec/NotToNot:
+  EnforcedStyle: to_not

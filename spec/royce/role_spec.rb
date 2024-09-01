@@ -1,20 +1,23 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
-RSpec.describe 'Basic tests' do
+RSpec.describe 'Basic tests' do # rubocop:disable RSpec/DescribeClass
 
   before { User.delete_all }
+
   let(:user) { User.create }
 
   it 'can create role' do
     role = Royce::Role.create(name: 'some_role')
-    expect(role).to_not be nil
+    expect(role).to_not be_nil
     expect(role.name).to eq 'some_role'
     expect(role.to_s).to eq 'some_role'
   end
 
   it 'Can create user' do
     user = User.create
-    expect(user).to_not be nil
+    expect(user).to_not be_nil
   end
 
   it 'Creates roles automatically' do
@@ -108,7 +111,9 @@ RSpec.describe 'Basic tests' do
 
   it 'has named scopes for each role' do
     User.available_roles.each do |role|
-      User.send role.name.pluralize.to_sym
+      expect {
+        User.send(role.name.pluralize.to_sym)
+      }.to_not raise_error
     end
   end
 
@@ -119,7 +124,7 @@ RSpec.describe 'Basic tests' do
     expect(user.role_list).to eq ['user']
 
     user.add_role :admin
-    expect(user.role_list).to eq ['user', 'admin']
+    expect(user.role_list).to eq %w[user admin]
   end
 
   it 'doesnt get double roles' do
