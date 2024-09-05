@@ -10,9 +10,9 @@ AllCops:
   TargetRubyVersion: 3.1
   Exclude:
     - bin/*
-    - lib/generators/**/*.rb
     - gemfiles/*
     - spec/dummy/**/*
+    - lib/generators/**/*.rb
 
 Gemspec/RequireMFA:
   Enabled: false
