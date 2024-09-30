@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails/generators'
 require 'rails/generators/active_record'
 
@@ -6,7 +8,7 @@ module Royce
 
     include ::Rails::Generators::Migration
 
-    source_root File.expand_path('../templates', __FILE__)
+    source_root File.expand_path('templates', __dir__)
 
     desc 'Generates DB migration files for Royce'
     def create_migration_file
