@@ -41,7 +41,7 @@ module Royce
       roles.delete(role)
     end
 
-    def has_role?(name) # rubocop:disable Naming/PredicateName
+    def has_role?(name) # rubocop:disable Naming/PredicatePrefix
       roles.where(name: name.to_s).exists?
     end
 
