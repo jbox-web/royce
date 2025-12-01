@@ -32,8 +32,8 @@ RSpec.describe 'Testing class-level scopes' do # rubocop:disable RSpec/DescribeC
   end
 
   describe 'Role to owning class relationships' do
-    the_role = Royce::Role.find_or_create_by(name: 'partier')
-    count = 20
+    let(:the_role) { Royce::Role.find_or_create_by(name: 'partier') }
+    let(:count) { 20 }
 
     it 'exist for single word models' do
       count.times { Employee.create.add_role 'partier' }
