@@ -29,14 +29,14 @@ ActiveRecord::Schema.define(version: 2013_10_30_014902) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["role_id"], name: "index_royce_connector_on_role_id"
-    t.index ["roleable_id", "roleable_type"], name: "index_royce_connector_on_roleable_id_and_roleable_type"
+    t.index ["roleable_id", "roleable_type", "role_id"], name: "index_royce_connector_uniqueness", unique: true
   end
 
   create_table "royce_role", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.index ["name"], name: "index_royce_role_on_name"
+    t.index ["name"], name: "index_royce_role_on_name", unique: true
   end
 
   create_table "users", force: :cascade do |t|

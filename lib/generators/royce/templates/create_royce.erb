@@ -1,19 +1,21 @@
-class CreateRoyce < ActiveRecord::Migration
+class CreateRoyce < ActiveRecord::Migration[<%= ActiveRecord::Migration.current_version %>]
   def change
     create_table :royce_connector do |t|
-      t.references :roleable, polymorphic: true, null: false
-      t.references :role, null: false
+      t.references :roleable, polymorphic: true, null: false, index: false
+      t.references :role, null: false, index: false
       t.timestamps
 
       t.index :role_id
-      t.index [:roleable_id, :roleable_type]
+      # Unique per (roleable, role): prevents duplicate assignments under
+      # concurrency and also serves lookups on [roleable_id, roleable_type].
+      t.index [:roleable_id, :roleable_type, :role_id], unique: true
     end
 
     create_table :royce_role do |t|
       t.string :name, null: false
       t.timestamps
 
-      t.index :name
+      t.index :name, unique: true
     end
   end
 end

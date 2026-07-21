@@ -8,7 +8,7 @@ class CreateTables < ActiveRecord::Migration[4.2]
       t.datetime :updated_at
 
       t.index [:role_id]
-      t.index [:roleable_id, :roleable_type]
+      t.index [:roleable_id, :roleable_type, :role_id], unique: true
     end
 
     create_table :royce_role, force: true do |t|
@@ -16,7 +16,7 @@ class CreateTables < ActiveRecord::Migration[4.2]
       t.datetime :created_at
       t.datetime :updated_at
 
-      t.index :name
+      t.index :name, unique: true
     end
 
     create_table :users, force: true do |t|

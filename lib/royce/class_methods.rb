@@ -20,8 +20,11 @@ module Royce
         # Add scopes to including class
         # User.admins
         # User.editors
+        # Expressed as a join so the scope never depends on the Royce::Role row
+        # already existing (a bare `Role.find_by(...).send(...)` would raise
+        # NoMethodError on nil before the roles are created).
         available_role_names.each do |role_name|
-          scope role_name.pluralize, -> { Role.find_by(name: role_name).send(includer_pluralized_name) }
+          scope role_name.pluralize, -> { joins(:roles).where(Royce::Role.table_name => { name: role_name }) }
         end
       end
 

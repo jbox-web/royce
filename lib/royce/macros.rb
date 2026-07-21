@@ -6,12 +6,11 @@ module Royce
     def royce_roles(roles)
       role_strings = roles.map(&:to_s)
 
-      # Work in singleton class
-      # Add a read-only class variable to all classes that call `royce_roles`
-      class << self
-        attr_reader :available_role_names
-      end
-      @available_role_names = role_strings
+      # Expose the declared role names as a class-level attribute.
+      # `class_attribute` (unlike a bare class instance variable) is inherited
+      # by STI subclasses, so `Admin < User` keeps the roles declared on `User`.
+      class_attribute :available_role_names, instance_accessor: false
+      self.available_role_names = role_strings
 
       include Royce::ClassMethods
       include Royce::Methods

@@ -14,6 +14,11 @@ RSpec.describe 'Testing class-level scopes' do # rubocop:disable RSpec/DescribeC
     expect(Employee.available_role_names).to eq %w[partier rocker]
   end
 
+  it 'inherits available_role_names in subclasses' do
+    subclass = Class.new(User)
+    expect(subclass.available_role_names).to eq User.available_role_names
+  end
+
   it 'Owner named scopes return owners with role' do
     employee = Employee.create
     expect(Employee.partiers.include?(employee)).to be false

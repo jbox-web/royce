@@ -3,10 +3,13 @@
 [![GitHub license](https://img.shields.io/github/license/jbox-web/royce.svg)](https://github.com/jbox-web/royce/blob/master/LICENSE)
 [![GitHub release](https://img.shields.io/github/release/jbox-web/royce.svg)](https://github.com/jbox-web/royce/releases/latest)
 [![CI](https://github.com/jbox-web/royce/workflows/CI/badge.svg)](https://github.com/jbox-web/royce/actions)
-[![Code Climate](https://codeclimate.com/github/jbox-web/royce/badges/gpa.svg)](https://codeclimate.com/github/jbox-web/royce)
-[![Test Coverage](https://codeclimate.com/github/jbox-web/royce/badges/coverage.svg)](https://codeclimate.com/github/jbox-web/royce/coverage)
 
 Roles in Rails.
+
+## Requirements
+
+* Ruby >= 3.2.0
+* Rails >= 7.0
 
 ## Installation
 
@@ -43,6 +46,10 @@ class User < ActiveRecord::Base
   royce_roles %w[user admin editor] # array of strings
 end
 
+# STI subclasses inherit the roles declared on their parent
+class Admin < User
+end
+
 class Sailor < ActiveRecord::Base
   royce_roles %i[captain bosun quartermaster] # array of symbols
 end
@@ -74,7 +81,11 @@ user.allowed_role? :user
 user.allowed_role? Royce::Role.find_by(name: 'user')
 ```
 
-You also get some conveneint methods to query if a user has a certain named role.
+`add_role` and `remove_role` return `true` when the role is allowed for the model
+(and thus applied) and `false` when the role name is not part of the model's declared
+roles, so you can branch on the result.
+
+You also get some convenient methods to query if a user has a certain named role.
 
 ```ruby
 user.admin?

@@ -26,19 +26,29 @@ module Royce
 
     # These methods are included in all User instances
 
+    # Returns true when the role is (or already was) assigned, false when the
+    # role is not allowed for this class.
     def add_role(name)
-      return unless allowed_role?(name)
-      return if has_role?(name)
+      return false unless allowed_role?(name)
+      return true if has_role?(name)
 
-      role = Role.find_by(name: name.to_s)
+      role = name.is_a?(Royce::Role) ? name : Role.find_or_create_by(name: name.to_s)
       roles << role
+      true
+    rescue ActiveRecord::RecordNotUnique
+      # A concurrent request inserted the same connector first. The unique index
+      # on royce_connector makes this a no-op rather than a duplicate row.
+      true
     end
 
-    def remove_role(name)
-      return unless allowed_role?(name)
+    # Returns true when a role was removed (or was already absent for an allowed
+    # role), false when the role is not allowed for this class.
+    def remove_role(name) # rubocop:disable Naming/PredicateMethod
+      return false unless allowed_role?(name)
 
-      role = Role.find_by(name: name.to_s)
-      roles.delete(role)
+      role = name.is_a?(Royce::Role) ? name : Role.find_by(name: name.to_s)
+      roles.delete(role) if role
+      true
     end
 
     def has_role?(name) # rubocop:disable Naming/PredicatePrefix

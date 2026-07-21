@@ -136,4 +136,38 @@ RSpec.describe 'Basic tests' do # rubocop:disable RSpec/DescribeClass
     user.admin!
     expect(user.roles.count).to eq 1
   end
+
+  describe 'return values' do
+    it 'add_role returns false for a disallowed role and true when applied' do
+      expect(user.add_role(:zxcv)).to be false
+      expect(user.add_role(:user)).to be true
+      expect(user.add_role(:user)).to be true # already assigned, still success
+    end
+
+    it 'remove_role returns false for a disallowed role and true otherwise' do
+      expect(user.remove_role(:zxcv)).to be false
+      expect(user.remove_role(:user)).to be true
+    end
+  end
+
+  describe 'remove_role with a Role object' do
+    it 'removes the role' do
+      user.add_role :user
+      role = Royce::Role.find_by(name: 'user')
+      user.remove_role role
+      expect(user.has_role?(:user)).to be false
+    end
+  end
+
+  describe 'when an allowed role row is missing' do
+    it 'recreates it instead of raising' do
+      user.add_role :user
+      Royce::Role.where(name: 'user').delete_all
+      expect(Royce::Role.find_by(name: 'user')).to be_nil
+
+      expect { user.add_role :user }.to_not raise_error
+      expect(Royce::Role.find_by(name: 'user')).to_not be_nil
+      expect(user.reload.has_role?(:user)).to be true
+    end
+  end
 end
