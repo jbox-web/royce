@@ -30,6 +30,11 @@ module Royce
 
       # Be able to search some_role.users and get back instances of User
       # Royce::Role.find_by(name, 'admin').users
+      #
+      # `source_type` scopes the polymorphic join to this exact model name, which
+      # also keeps STI subclasses addressable as distinct associations. Note that
+      # these associations accumulate on the shared Royce::Role class — one per
+      # model that ever calls `royce_roles`.
       Royce::Role.class_eval do
         has_many includer_pluralized_name, through: :connectors, source: :roleable, source_type: includer_name
       end
