@@ -169,5 +169,20 @@ RSpec.describe 'Basic tests' do # rubocop:disable RSpec/DescribeClass
       expect(Royce::Role.find_by(name: 'user')).to_not be_nil
       expect(user.reload.has_role?(:user)).to be true
     end
+
+    it 'remove_role returns true without deleting when the row is absent' do
+      Royce::Role.where(name: 'user').delete_all
+      expect(Royce::Role.find_by(name: 'user')).to be_nil
+
+      expect(user.remove_role(:user)).to be true
+    end
+  end
+
+  describe 'concurrent insert of the same connector' do
+    it 'add_role swallows RecordNotUnique and reports success' do
+      allow(user.roles).to receive(:<<).and_raise(ActiveRecord::RecordNotUnique)
+
+      expect(user.add_role(:user)).to be true
+    end
   end
 end
